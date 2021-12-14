@@ -31,13 +31,13 @@ const Adicionacontrato = async () => {
                     TCC.abi,
                     deployedNetwork
                 );
-                const receipt = await contract.methods.setCETR(NomeCliente, NomeEmpresa, TempoPrevisto, Requisitos).send({
+                const receipt = await contract.methods.setCETR(NomeCliente, NomeEmpresa, TempoPrevisto, Requisitos, Status).send({
                     from: addresses[0]
                     });
-    contract.methods.setCETR(NomeCliente, NomeEmpresa, TempoPrevisto, Requisitos).send({from: addresses[0] })
+    contract.methods.setCETR(NomeCliente, NomeEmpresa, TempoPrevisto, Requisitos, Status).send({from: addresses[0] })
         .on('transactionHash', function(hash){
             console.log(hash);
-                const sql = "INSERT into contratos(Cliente, Empresa, DataPrevista, Requisitos, Hash)values('"+ NomeCliente + "','" + NomeEmpresa + "','" + TempoPrevisto + "','" + Requisitos + "','" + hash + "');"
+                const sql = "INSERT into contratos_alt(Cliente, Empresa, DataPrevista, Requisitos, Hash, HashOld, status)values('"+ NomeCliente + "','" + NomeEmpresa + "','" + TempoPrevisto + "','" + Requisitos + "','" + hash + "','" + HashOld + "','" + status + "');";
                 con.query(sql, function (err, result) {
                 if (err) throw err;
                 console.log("Foi Adicionado um contrato");
@@ -54,7 +54,7 @@ const Adicionacontrato = async () => {
         TCC.abi,
         deployedNetwork
     );
-    contract.methods.setCETR(NomeCliente, NomeEmpresa, TempoPrevisto, Requisitos).send({from: addresses[0] })
+    contract.methods.setCETR(NomeCliente, NomeEmpresa, TempoPrevisto, Requisitos, Status).send({from: addresses[0] })
     .on('transactionHash', function(hash){
         console.log(hash);
         
@@ -82,7 +82,7 @@ const Adicionacontrato = async () => {
         TCC.abi,
         deployedNetwork
     );
-    contract.methods.setCETR(NomeCliente, NomeEmpresa, TempoPrevisto, Requisitos).send({from: addresses[0] })
+    contract.methods.setCETR(NomeCliente, NomeEmpresa, TempoPrevisto, Requisitos, Status).send({from: addresses[0] })
     .on('transactionHash', function(hash){
         console.log(hash);
         
